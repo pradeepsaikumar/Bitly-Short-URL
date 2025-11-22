@@ -1,21 +1,19 @@
-export default function Stats({ link }) {
-  const created = link.created_at
-    ? new Date(link.created_at).toLocaleString()
-    : "Unknown";
+import Layout from "../components/Layout";
 
-  const lastClicked = link.last_clicked
-    ? new Date(link.last_clicked).toLocaleString()
-    : "Never";
+export async function getServerSideProps() {
+  // Render only on server, not at build time
+  return { props: {} };
+}
 
+export default function Stats() {
   return (
-    <div>
-      <h1>Stats for {link.code}</h1>
-
-      <p>URL: {link.target_url}</p>
-      <p>Clicks: {link.clicks}</p>
-
-      <p>Created: {created}</p>
-      <p>Last Clicked: {lastClicked}</p>
-    </div>
+    <Layout>
+      <div className="max-w-3xl mx-auto p-6 text-center">
+        <h1 className="text-3xl font-bold mb-4">Stats Page</h1>
+        <p className="text-gray-600">
+          Select a short URL from dashboard to view its analytics.
+        </p>
+      </div>
+    </Layout>
   );
 }
